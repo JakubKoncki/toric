@@ -1,0 +1,2 @@
+# toric
+Trivial toric schemes
