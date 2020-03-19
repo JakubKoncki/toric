@@ -3,6 +3,7 @@
 \usepackage{systeme}
 \usepackage{enumitem}
 \usepackage{hyperref}
+\usepackage[T1]{fontenc}            %% Polish fonts
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage{hyperref}
@@ -12,6 +13,14 @@
 \usepackage{amsthm}
 \usepackage{amsfonts}
 \usepackage{amssymb}
+
+
+
+\usepackage[textsize=tiny]{todonotes}
+\newcommand{\jarek}[1]{\todo[color=green!40]{JB: #1}}             % for Jarek's comments on the margin
+\newcommand{\jarekI}[1]{\todo[inline,color=green!40]{JB: #1}}     % for Jarek's comments inline
+
+
 
 
 \newtheorem{thm}{Theorem}
@@ -28,11 +37,13 @@
 \newcommand{\mf}{\mathfrak}
 \newcommand{\mc}{\mathcal}
 \title{Notes from reading "Introduction to Toric Varieties" by Fulton}
+\author{TiGR participants}
 \begin{document}
 \maketitle
 \chapter{Definitions and examples}
 \section{Motivating Example}
-Let $X\subseteq \mathbb{A}^3_\mathbb{C}$ be given by $y^3-xz=0$. Denote its coordinate ring by $R=\mathbb{C}[x,y,z]/(y^3-xz)$ and consider the action of $(\mathbb{C}^*)^2$ on $X$ given by:
+Let $X\subseteq \mathbb{A}^3_\mathbb{C}$ be given by $y^3-xz=0$. Denote its coordinate ring by $R=\mathbb{C}[x,y,z]/(y^3-xz)$\jarek{$R$ jest używane w innym znaczeniu w dalszej części pracy, proponuję zmienić jedno lub drugie} 
+and consider the action of $(\mathbb{C}^*)^2$ on $X$ given by:
 \[
 (t_1,t_2)\cdot (x,y,z) = (t_1^2t_2^3x, t_1t_2y, t_1z).
 \]
@@ -40,6 +51,10 @@ We have an induced action of $(\mathbb{C}^*)^2$ on the coordinate ring $R$ given
 \[
 (t\cdot f)(p) = f(t\cdot p).
 \]
+\jarekI{Zazwyczaj lepiej zdefiniować działanie na algebrze jako 
+$(t\cdot f)(p) = f(t^{-1}\cdot p)$, bo jak nie to się robią problemy. Stricte mówiąc, jedno powinno być lewym działaniem, a drugie prawym:
+$(f\cdot t)(p) = f(t^{-1}\cdot p)$.
+}
 Let $M =\{\chi\colon (\mathbb{C}^*)^2\to \mathbb{C}^*\}$ be the lattice of characters of $(\mathbb{C}^*)^2$. Recall that this group is isomorphic with $\mathbb{Z}^2$, $u\in \mathbb{Z}^2$ corresponding to $\chi^{u}\colon t\mapsto t^u$. Given $\chi^u\in M$, define $R_{u} = \{f\in R | t\cdot f = \chi^u(t)\cdot f\}$.
 The class in $R$ of every monomial in $\mathbb{C}[x,y,z]$ can be written uniquely in the form $x^ay^bz^c$ with $b\in\{0,1,2\}$. We have $t_1^mt_2^n\cdot x^ay^bz^c = t_1^{m(2a+b+c)}t_2^{n(3a+b)}x^ay^bz^c$. Therefore, $x^ay^bz^c \in R_{u}$ if and only if $u = (2a+b+c, 3a+b)$. 
 Let $u=(i,j)$. We search for a solution of the following system:
@@ -48,7 +63,7 @@ Let $u=(i,j)$. We search for a solution of the following system:
 \]
 For every $(i,j)$ there is at most one solution, so $R=\bigoplus_{u\in \mathbb{Z}^2}R_u$ decomposes $R$ into one or zero dimensional subrepresentations of $(\mathbb{C}^*)^2$. We will find those $u=(i,j)$ for which $R_u$ is non-zero. We need to have $j\geq 0$ and then $a,b$ are uniquely determined. Therefore, if $j\geq 0$ then a solution exists if and only if $i-2a-b\geq 0$. This is equivalent to $3i-6a-3b\geq 0$. We can rewrite this as $3i \geq 2j+b$ which is equivalent to $3i\geq 2j$ since $2j+b = 6a+3b$ is divisible by 3 and $b\in\{0,1,2\}$. 
 
-Therefore, for every $u\in \mathbb{Z}^2$ we have $\on{dim}_\mathbb{C} R_u \in \{0, 1\}$ and those $u$ for which $\on{dim}_\mathbb{C} R_u = 1$ are the lattice points of the cone below (cones will be formally defined in the next section).
+Therefore, for every $u\in \mathbb{Z}^2$ we have $\on{dim}_\mathbb{C} R_u \in \{0, 1\}$ and those $u$ for which $\on{dim}_\mathbb{C} R_u = 1$ are the lattice points of the cone below (cones will be formally defined in the next section).\jarek{Raczej ``in Section~\ref{...}}
 \clearpage
 \begin{figure}[h]
 \centering
@@ -91,6 +106,7 @@ Therefore, for every $u\in \mathbb{Z}^2$ we have $\on{dim}_\mathbb{C} R_u \in \{
  Denote this cone by $\sigma^\vee$ and define the corresponding semigroup algebra $\mathbb{C}[\sigma^\vee \cap M] = \bigoplus_{u\in \sigma^\vee\cap M}\mathbb{C}\cdot \chi^u$ with multiplication induced by $\chi^u\cdot \chi^v = \chi^{u+v}$. Since $\sigma^\vee \cap M$ is generated as a semigroup by $(1,0), (1,1), (2,3)$, $\mathbb{C}[\sigma^\vee \cap M]$ is generated as a $\mathbb{C}$-algebra by $\chi^{(1,0)}$, $\chi^{(1,1)}$ and $\chi^{(2,3)}$. Moreover, the generators of the semigroup $\sigma^\vee \cap M$ satisfy a relation $3\cdot(1,1) = (1,0) + (2,3)$, therefore we have an isomorphism $\mathbb{C}[\sigma^\vee \cap M] \to R$ given by $\chi^{(1,0)}\mapsto x$, $\chi^{(1,1)}\mapsto y$ and $\chi^{(2,3)}\mapsto z$. 
 
 \section{Convex polyhedral cones}
+\jarek{A definicja $N$ oraz $M$?}
 Let $V$ be the vector space $N_\mathbb{R}$, with dual space $V^* = M_\mathbb{R}$. A \textit{convex polyhedral cone} is a set 
 \[
 \sigma = \{r_1v_1+...+r_sv_s\in V: r_i\geq 0\}
@@ -309,12 +325,12 @@ of open subsets corresponding to faces of $\sigma$. In particular, they extend t
 
 
 To say it differently, the multiplication in $\mathbb{G}_m^n$ is known to correspond to the homomorphism $m^\# \colon R[M] \to R[M]\otimes R[M]$ given by $\chi^u\mapsto \chi^u\otimes \chi^u$. Therefore, if we define $\mu^\#\colon R[S_\sigma]\to R[M]\otimes R[S_\sigma]$ by $\chi^u\mapsto \chi^u\otimes \chi^u$ the following diagram is commutative:
-\begin{center}
+\[
 \begin{tikzcd}
 R[S_\sigma] \arrow[r, "\mu^\#"] \arrow[d, hook] & R[M]\otimes R[S_\sigma] \arrow[d, hook]\\
 R[M] \arrow[r, "m^\#"] & R[M]\otimes R[M].
 \end{tikzcd}
-\end{center}
+\]
 so that $\mu\colon T_N\times U_\sigma \to U_\sigma$ extends $m\colon T_N\times T_N \to T_N$. In order to check that this is an action we should check that the following diagrams are commutative:
 
 \begin{center}
