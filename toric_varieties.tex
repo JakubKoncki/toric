@@ -32,8 +32,10 @@
 \newtheorem{rmk}[thm]{Remark}
 
 \newcommand{\on}{\operatorname}
-\newcommand{\s}{\on{Spec}}
-\newcommand{\p}{\on{Proj}}
+% \newcommand{\s}{\on{Spec}}  %%% Nie używamy jedno-, dwu-literowych skrótów!!! To prośba o problemy! 
+\DeclareMathOperator{\Spec}{Spec}
+% \newcommand{\p}{\on{Proj}}  %%% Nie używamy jedno-, dwu-literowych skrótów!!! To prośba o problemy!
+\DeclareMathOperator{\Proj}{Proj}
 \newcommand{\mf}{\mathfrak}
 \newcommand{\mc}{\mathcal}
 \title{Notes from reading "Introduction to Toric Varieties" by Fulton}
@@ -52,8 +54,8 @@ We have an induced action of $(\mathbb{C}^*)^2$ on the coordinate ring $R$ given
 (t\cdot f)(p) = f(t\cdot p).
 \]
 \jarekI{Zazwyczaj lepiej zdefiniować działanie na algebrze jako 
-$(t\cdot f)(p) = f(t^{-1}\cdot p)$, bo jak nie to się robią problemy. Stricte mówiąc, jedno powinno być lewym działaniem, a drugie prawym:
-$(f\cdot t)(p) = f(t^{-1}\cdot p)$.
+$(t\cdot f)(p) = f(t^{-1}\cdot p)$, bo jak nie, to się robią problemy. Stricte mówiąc, jedno powinno być lewym działaniem, a drugie prawym:
+$(f\cdot t)(p) = f(t\cdot p)$.
 }
 Let $M =\{\chi\colon (\mathbb{C}^*)^2\to \mathbb{C}^*\}$ be the lattice of characters of $(\mathbb{C}^*)^2$. Recall that this group is isomorphic with $\mathbb{Z}^2$, $u\in \mathbb{Z}^2$ corresponding to $\chi^{u}\colon t\mapsto t^u$. Given $\chi^u\in M$, define $R_{u} = \{f\in R | t\cdot f = \chi^u(t)\cdot f\}$.
 The class in $R$ of every monomial in $\mathbb{C}[x,y,z]$ can be written uniquely in the form $x^ay^bz^c$ with $b\in\{0,1,2\}$. We have $t_1^mt_2^n\cdot x^ay^bz^c = t_1^{m(2a+b+c)}t_2^{n(3a+b)}x^ay^bz^c$. Therefore, $x^ay^bz^c \in R_{u}$ if and only if $u = (2a+b+c, 3a+b)$. 
@@ -236,22 +238,22 @@ When $\sigma$ is a strongly convex rational polyhedral cone, we have seen that $
 \]
 The unit $1$ is $\chi^0$. Generators $\{u_i\}$ for the semigroup $S$ determine generators $\{\chi^{u_i}$\} for the $R$-algebra $R[S]$. 
 
-Any finitely generated commutative $R$-algebra $A$ determines an affine scheme of finite type over $R$, which we denote by $\s (A)$. We review this construction and its related notation. If generators of $A$ are chosen, this presents $A$ as $R[X_1,...,X_m]/I$, where $I$ is an ideal;
-then $\s A$ can be identified with the subscheme $V(I)$ of affine space $\mathbb{A}^m$. In our applications, $A$ will be a domain, so $\s (A)$ will be an integral scheme. Although $\s (A)$ officially includes all prime ideals of $A$, when we speak of a \textit{point} of $\s (A)$ we will mean an $R$-point, i.e. a homomorphism of $R$-schemes $\s (R) \to \s (A)$, unless we specify otherwise. Any homomorphism $A \to B$ of $R$-algebras determines a morphism $\s (B)\to \s (A)$ of
-$R$-schemes. In particular, $R$-points correspond to $R$-algebra homomorphisms from $A$ to $R$. If $X = \s (A)$, for each nonzero element $f \in A$ the principal open subset
+Any finitely generated commutative $R$-algebra $A$ determines an affine scheme of finite type over $R$, which we denote by $\Spec (A)$. We review this construction and its related notation. If generators of $A$ are chosen, this presents $A$ as $R[X_1,...,X_m]/I$, where $I$ is an ideal;
+then $\Spec A$ can be identified with the subscheme $V(I)$ of affine space $\mathbb{A}^m$. In our applications, $A$ will be a domain, so $\Spec(A)$ will be an integral scheme. Although $\Spec(A)$ officially includes all prime ideals of $A$, when we speak of a \textit{point} of $\Spec(A)$ we will mean an $R$-point, i.e. a homomorphism of $R$-schemes $\Spec(R) \to \Spec(A)$, unless we specify otherwise. Any homomorphism $A \to B$ of $R$-algebras determines a morphism $\Spec(B)\to \Spec(A)$ of
+$R$-schemes. In particular, $R$-points correspond to $R$-algebra homomorphisms from $A$ to $R$. If $X = \Spec(A)$, for each nonzero element $f \in A$ the principal open subset
 \[
-X_f = \s(A_f) \subset X = \s (A)
+X_f = \Spec(A_f) \subset X = \Spec(A)
 \]
 corresponds to the localization homomorphism $A\to A_f$. 
 
 For $A = R[S]$ constructed from a semigroup, the points are easy to describe: they correspond to homomorphisms of semigroups from $S$ to $R$, where $R$ is regarded as an abelian semigroup via
 multiplication:
 \[
-(\s (R[S]))(R) = \on{Hom}_{sg}(S, R).
+(\Spec(R[S]))(R) = \on{Hom}_{sg}(S, R).
 \]
 Indeed, this follows from the adjunction $R[-] \dashv G$ where $G$ is the forgetful functor from the category of $R$-algebras to the category of monoids mapping an $R$-algebra to the underlying multiplicative monoid.
 
-When $S_\sigma$ arises from a strongly convex rational polyhedral cone, we set $A_\sigma = R[S_\sigma]$, and $U_\sigma = \s (R[S_\sigma]) = \s (A_\sigma)$, the corresponding \textit{affine toric scheme}. All of these semigroups will be sub-semigroups of the group $M = S_{\{0\}}$. If $e_1,..., e_n$ is a basis for $N$, and $e_1^*,..., e_n^*$ is the dual basis of $M$, write 
+When $S_\sigma$ arises from a strongly convex rational polyhedral cone, we set $A_\sigma = R[S_\sigma]$, and $U_\sigma = \Spec(R[S_\sigma]) = \Spec(A_\sigma)$, the corresponding \textit{affine toric scheme}. All of these semigroups will be sub-semigroups of the group $M = S_{\{0\}}$. If $e_1,..., e_n$ is a basis for $N$, and $e_1^*,..., e_n^*$ is the dual basis of $M$, write 
 \[
 X_i = \chi^{e_i^*} \in R[M].
 \]
@@ -261,13 +263,13 @@ R[M] = R[X_1,X_1^{-1},X_2,X_2^{-1},... ,X_n, X_n^{-1}] = R[X_1,...,X_n]_{X_1\cdo
 \]
 which is the ring of \textit{Laurent polynomials} in $n$ variables. So
 \[
-U_{\{0\}} = \s (R[M])\cong \mathbb{G}_m^n
+U_{\{0\}} = \Spec(R[M])\cong \mathbb{G}_m^n
 \]
 is an affine algebraic torus. All of our semigroups $S$ will be sub-semigroups of a lattice $M$, so $R[S]$ will be a subalgebra of $R[M]$; in particular, $R[S]$ will be a domain if $R$ is an integral domain. When a basis for $M$ is chosen as above, we usually write elements of $R[S]$ as Laurent polynomials in the corresponding variables $X_i$. Note that all of these algebras are generated by \textit{monomials} in the variables $X_i$.
 
 The torus $T = T_N$ corresponding to $M$ or $N$ can be written intrinsically:
 \[
-T_N(R) = (\s (R[M]))(R) = \on{Hom}_{group}(M,R^*) = N\otimes_\mathbb{Z}R^*.
+T_N(R) = (\Spec(R[M]))(R) = \on{Hom}_{group}(M,R^*) = N\otimes_\mathbb{Z}R^*.
 \]
 The above uses the adjunction $R[-]\dashv [-]^*$ where $[-]^*$ is the functor from the category of $R$-algebras to the category of groups mapping underlying ring to its group of invertible elements.
 
@@ -287,7 +289,7 @@ singularities are studied. If we take $N = \mathbb{Z}^3$ and $v_i = e_i$ for $i 
 A_\sigma = R[X_1,X_3, X_1X_2, X_2X_3] = R[W,X,Y,Z]/(WZ-XY).
 \]
 
-A homomorphism of semigroups $S \to S'$ determines a homomorphism \linebreak $R[S] \to R[S']$ of algebras, hence a morphism $\s(R[S']) \to \s(R[S])$ of affine $R$-schemes. In particular, if $\tau$  is contained in $\sigma$, then $S_\sigma$ is a sub-semigroup of $S_\tau$, corresponding to
+A homomorphism of semigroups $S \to S'$ determines a homomorphism \linebreak $R[S] \to R[S']$ of algebras, hence a morphism $\Spec (R[S']) \to \Spec (R[S])$ of affine $R$-schemes. In particular, if $\tau$  is contained in $\sigma$, then $S_\sigma$ is a sub-semigroup of $S_\tau$, corresponding to
 a morphism $U_\tau \to U_\sigma$. For example, the torus $T_N = U_{\{0\}}$ maps to all
 of the affine toric schemes $U_\sigma$ that come from cones $\sigma$ in $N$.
 
@@ -338,11 +340,11 @@ so that $\mu\colon T_N\times U_\sigma \to U_\sigma$ extends $m\colon T_N\times T
 T_N\times T_N \times U_\sigma \arrow[r, "\on{id}\times \mu"] \arrow[d, "m\times \on{id}"] & T_N \times U_\sigma \arrow[d, "\mu"]\\
 T_N\times U_\sigma \arrow[r, "\mu"] & U_\sigma
 \end{tikzcd} \begin{tikzcd}
-\s R \times U_\sigma \arrow[r, "e\times \on{id}"] \arrow[dr, "\cong"'] & T_N \times U_\sigma \arrow[d, "\mu"]\\
+\Spec R \times U_\sigma \arrow[r, "e\times \on{id}"] \arrow[dr, "\cong"'] & T_N \times U_\sigma \arrow[d, "\mu"]\\
 & U_\sigma
 \end{tikzcd}
 \end{center}
-This can be verified directly on algebras using the fact that $e:\s R \to T_N$ corresponds to $R[M]\to R$ given by $\chi^u\mapsto 1$ for all $u\in M$ and the isomorphism in the right diagram corresponds to the standard isomorphism $R[S_\sigma]\to R\otimes_R R[S_\sigma]$.
+This can be verified directly on algebras using the fact that $e:\Spec R \to T_N$ corresponds to $R[M]\to R$ given by $\chi^u\mapsto 1$ for all $u\in M$ and the isomorphism in the right diagram corresponds to the standard isomorphism $R[S_\sigma]\to R\otimes_R R[S_\sigma]$.
 
 
 
@@ -363,23 +365,23 @@ u \mapsto \begin{cases}
 Note that this is well defined since $\sigma^\perp$ is a face of $\sigma^\vee$, which implies
 that the sum of two elements in $\sigma^\vee$ cannot be in $\sigma^\perp$ unless both are in $\sigma^\perp$.
 
-\begin{prop*} An affine toric scheme $U_\sigma$ is smooth over $\s (R)$ if and only if $\sigma$ is generated by part of a basis for the lattice $N$, in which case
+\begin{prop*} An affine toric scheme $U_\sigma$ is smooth over $\Spec (R)$ if and only if $\sigma$ is generated by part of a basis for the lattice $N$, in which case
 \[
 U_\sigma \cong \mathbb{A}^k\times \mathbb{G}_m^{n-k} \text{, } k =\on{dim}(\sigma).
 \]
 \end{prop*}
 \begin{proof}
-It is enough to show that if $U_\sigma$ is smooth over $\s (R)$ then $\sigma$ is generated by part of a basis for the lattice $N$. Suppose to start that $\sigma$ spans $N_\mathbb{R}$, so $\sigma^\perp = \{0\}$. Assume that $U_\sigma$ is smooth over $R$ and let $\mf{n}$ be a maximal ideal of $R$ with $K=R/\mf{n}$. Take the base change:
+It is enough to show that if $U_\sigma$ is smooth over $\Spec (R)$ then $\sigma$ is generated by part of a basis for the lattice $N$. Suppose to start that $\sigma$ spans $N_\mathbb{R}$, so $\sigma^\perp = \{0\}$. Assume that $U_\sigma$ is smooth over $R$ and let $\mf{n}$ be a maximal ideal of $R$ with $K=R/\mf{n}$. Take the base change:
 \begin{center}
 \begin{tikzcd}
 U_\sigma \times_R K \arrow[r] \arrow[d, "\pi'"] & U_\sigma \arrow[d, "\pi"]\\
-\s K \arrow[r] & \s R.
+\Spec K \arrow[r] & \Spec R.
 \end{tikzcd}
 \end{center}
-Note that $U_\sigma \times_R K$ is the affine toric variety associated with the cone $\sigma$ if we work in the category of $K$-schemes. Moreover, since $\pi$ is smooth, so is $\pi'$. Therefore, we may assume from the start that $U_\sigma$ is a variety over a field $K$. Then $\pi$ being smooth implies that $U_\sigma$ is a regular scheme. Consider the maximal ideal $\mf{m} = (\chi^u:u\in S_\sigma\setminus \{0\})$ of $A_\sigma = K[\sigma^\vee\cap M]$. The square $\mf{m}^2$ is generated by all $\chi^u$ for those $u$ that are sums of two elements of $S_\sigma\setminus \{0\}$. The cotangent space $\mf{m}/\mf{m}^2$ therefore has a basis of images of elements $\chi^u$ for
+Note that $U_\sigma \times_R K$ is the affine toric variety associated with the cone $\sigma$ if we work in the category of $K$-schemes. Moreover, since $\pi$ is smooth, so is $\pi'$\jarek{referencja?}. Therefore, we may assume from the start that $U_\sigma$ is a variety over a field $K$, that is we suppose that $R=K$ is a field. Then $\pi$ being smooth implies that $U_\sigma$ is a regular scheme\jarek{referencja?}. Consider the maximal ideal $\mf{m} = (\chi^u:u\in S_\sigma\setminus \{0\})$ of $A_\sigma = K[\sigma^\vee\cap M]$. The square $\mf{m}^2$ is generated by all $\chi^u$ for those $u$ that are sums of two elements of $S_\sigma\setminus \{0\}$. The cotangent space $\mf{m}/\mf{m}^2$ therefore has a basis of images of elements $\chi^u$ for
 those $u$ in $S_\sigma \setminus \{0\}$ that are not the sums of two such vectors. For
 example, the first elements in $M$ lying along the edges of $\sigma^\vee$ are vectors of this kind. Since $U_\sigma$ is regular, 
-the cotangent space $\mf{m}/\mf{m}^2$ is $n$-dimensional, since $\on{dim}(U_\sigma) = \on{dim}(T_N) = n.$ This implies in particular that $\sigma^\vee$ cannot have more than $n$ edges, and that the
+the cotangent space $\mf{m}/\mf{m}^2$ is $n$-dimensional, since $\dim(U_\sigma) = \dim(T_N) = n$. This implies in particular that $\sigma^\vee$ cannot have more than $n$ edges, and that the
 minimal generators along these edges must generate $S_\sigma$. Since $S_\sigma$ generates $M$ as a group, the minimal generators for $S_\sigma$ must be a basis for $M$. The dual $\sigma$ must therefore be generated by a basis for $N$. Hence $U_\sigma$ is isomorphic to affine space $\mathbb{A}^n_K$.
 
 Consider now a general case when $\sigma$ has smaller dimension $k$. Let
