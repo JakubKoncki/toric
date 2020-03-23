@@ -18,16 +18,13 @@
 
 \usepackage[textsize=tiny]{todonotes}
 \newcommand{\jarek}[1]{\todo[color=green!40]{JB: #1}}             % for Jarek's comments on the margin
-\newcommand{\jarekI}[1]{\todo[inline,color=green!40]{JB: #1}}     % for Jarek's comments inline
-
+\newcommand{\jarekI}[1]{\todo[inline,color=green!40]{JB: #1}}     % for Jarek's comments inline            
 
 
 
 \newtheorem{thm}{Theorem}
 \newtheorem{prop}[thm]{Proposition}
-\newtheorem*{prop*}{Proposition}
 \newtheorem{lem}[thm]{Lemma}
-\newtheorem*{lem*}{Lemma}
 \newtheorem{cor}[thm]{Corollary}
 \newtheorem{rmk}[thm]{Remark}
 
@@ -44,28 +41,29 @@
 \maketitle
 \chapter{Definitions and examples}
 \section{Motivating Example}
-Let $X\subseteq \mathbb{A}^3_\mathbb{C}$ be given by $y^3-xz=0$. Denote its coordinate ring by $R=\mathbb{C}[x,y,z]/(y^3-xz)$\jarek{$R$ jest używane w innym znaczeniu w dalszej części pracy, proponuję zmienić jedno lub drugie} 
+Let $X\subseteq \mathbb{A}^3_\mathbb{C}$ be given by $y^3-xz=0$. Denote its coordinate ring by $\mathbb{C}[X]=\mathbb{C}[x,y,z]/(y^3-xz)$%\jarek{$R$ jest używane w innym znaczeniu w dalszej części pracy, proponuję zmienić jedno lub drugie} 
 and consider the action of $(\mathbb{C}^*)^2$ on $X$ given by:
 \[
-(t_1,t_2)\cdot (x,y,z) = (t_1^2t_2^3x, t_1t_2y, t_1z).
+(t_1,t_2)\cdot (x,y,z) = (t_1^{-2}t_2^{-3}x, t_1^{-1}t_2^{-1}y, t_1^{-1}z).
 \]
-We have an induced action of $(\mathbb{C}^*)^2$ on the coordinate ring $R$ given by 
+We have an induced action of $(\mathbb{C}^*)^2$ on the coordinate ring $\mathbb{C}[X]$ given by 
 \[
-(t\cdot f)(p) = f(t\cdot p).
+(t\cdot f)(p) = f(t^{-1}\cdot p).
 \]
-\jarekI{Zazwyczaj lepiej zdefiniować działanie na algebrze jako 
-$(t\cdot f)(p) = f(t^{-1}\cdot p)$, bo jak nie, to się robią problemy. Stricte mówiąc, jedno powinno być lewym działaniem, a drugie prawym:
-$(f\cdot t)(p) = f(t\cdot p)$.
-}
-Let $M =\{\chi\colon (\mathbb{C}^*)^2\to \mathbb{C}^*\}$ be the lattice of characters of $(\mathbb{C}^*)^2$. Recall that this group is isomorphic with $\mathbb{Z}^2$, $u\in \mathbb{Z}^2$ corresponding to $\chi^{u}\colon t\mapsto t^u$. Given $\chi^u\in M$, define $R_{u} = \{f\in R | t\cdot f = \chi^u(t)\cdot f\}$.
-The class in $R$ of every monomial in $\mathbb{C}[x,y,z]$ can be written uniquely in the form $x^ay^bz^c$ with $b\in\{0,1,2\}$. We have $t_1^mt_2^n\cdot x^ay^bz^c = t_1^{m(2a+b+c)}t_2^{n(3a+b)}x^ay^bz^c$. Therefore, $x^ay^bz^c \in R_{u}$ if and only if $u = (2a+b+c, 3a+b)$. 
+%\jarekI{Zazwyczaj lepiej zdefiniować działanie na algebrze jako 
+%$(t\cdot f)(p) = f(t^{-1}\cdot p)$, bo jak nie, to się robią problemy. Stricte mówiąc, jedno powinno być lewym działaniem, a drugie prawym:
+%$(f\cdot t)(p) = f(t\cdot p)$.
+%}
+Let $M =\{\chi\colon (\mathbb{C}^*)^2\to \mathbb{C}^*\}$ be the lattice of characters of $(\mathbb{C}^*)^2$. Recall that this group is isomorphic with $\mathbb{Z}^2$, $u\in \mathbb{Z}^2$ corresponding to $\chi^{u}\colon t\mapsto t^u$. Given $\chi^u\in M$, define $\mathbb{C}[X]_{u} = \{f\in \mathbb{C}[X] | t\cdot f = \chi^u(t)\cdot f\}$.
+The class in $\mathbb{C}[X]$ of every monomial in $\mathbb{C}[x,y,z]$ can be written uniquely in the form $x^ay^bz^c$ with $b\in\{0,1,2\}$. We have $t_1^mt_2^n\cdot x^ay^bz^c = t_1^{m(2a+b+c)}t_2^{n(3a+b)}x^ay^bz^c$. Therefore, $x^ay^bz^c \in \mathbb{C}[X]_{u}$ if and only if $u = (2a+b+c, 3a+b)$. 
 Let $u=(i,j)$. We search for a solution of the following system:
 \[
 \systeme*{2a+b+c = i, 3a+b = j, b\in\{\text{0,1,2}\},a\geq 0, c\geq 0}
 \]
-For every $(i,j)$ there is at most one solution, so $R=\bigoplus_{u\in \mathbb{Z}^2}R_u$ decomposes $R$ into one or zero dimensional subrepresentations of $(\mathbb{C}^*)^2$. We will find those $u=(i,j)$ for which $R_u$ is non-zero. We need to have $j\geq 0$ and then $a,b$ are uniquely determined. Therefore, if $j\geq 0$ then a solution exists if and only if $i-2a-b\geq 0$. This is equivalent to $3i-6a-3b\geq 0$. We can rewrite this as $3i \geq 2j+b$ which is equivalent to $3i\geq 2j$ since $2j+b = 6a+3b$ is divisible by 3 and $b\in\{0,1,2\}$. 
+For every $(i,j)$ there is at most one solution, so $\mathbb{C}[X]=\bigoplus_{u\in \mathbb{Z}^2}\mathbb{C}[X]_u$ decomposes $\mathbb{C}[X]$ into one or zero dimensional subrepresentations of $(\mathbb{C}^*)^2$. We will find those $u=(i,j)$ for which $\mathbb{C}[X]_u$ is non-zero. We need to have $j\geq 0$ and then $a,b$ are uniquely determined. Therefore, if $j\geq 0$ then a solution exists if and only if $i-2a-b\geq 0$. This is equivalent to $3i-6a-3b\geq 0$. We can rewrite this as $3i \geq 2j+b$ which is equivalent to $3i\geq 2j$ since $2j+b = 6a+3b$ is divisible by 3 and $b\in\{0,1,2\}$. 
 
-Therefore, for every $u\in \mathbb{Z}^2$ we have $\on{dim}_\mathbb{C} R_u \in \{0, 1\}$ and those $u$ for which $\on{dim}_\mathbb{C} R_u = 1$ are the lattice points of the cone below (cones will be formally defined in the next section).\jarek{Raczej ``in Section~\ref{...}}
+Therefore, for every $u\in \mathbb{Z}^2$ we have $\on{dim}_\mathbb{C} \mathbb{C}[X]_u \in \{0, 1\}$ and those $u$ for which $\on{dim}_\mathbb{C} \mathbb{C}[X]_u = 1$ are the lattice points of the cone below (cones will be formally defined in the Section \ref{sec:convex_polyhedral_cones}).
+%\jarek{Raczej ``in Section~\ref{...}}
 \clearpage
 \begin{figure}[h]
 \centering
@@ -105,11 +103,11 @@ Therefore, for every $u\in \mathbb{Z}^2$ we have $\on{dim}_\mathbb{C} R_u \in \{
   \end{tikzpicture}
   \label{figure:fan of A^2}
 \end{figure}
- Denote this cone by $\sigma^\vee$ and define the corresponding semigroup algebra $\mathbb{C}[\sigma^\vee \cap M] = \bigoplus_{u\in \sigma^\vee\cap M}\mathbb{C}\cdot \chi^u$ with multiplication induced by $\chi^u\cdot \chi^v = \chi^{u+v}$. Since $\sigma^\vee \cap M$ is generated as a semigroup by $(1,0), (1,1), (2,3)$, $\mathbb{C}[\sigma^\vee \cap M]$ is generated as a $\mathbb{C}$-algebra by $\chi^{(1,0)}$, $\chi^{(1,1)}$ and $\chi^{(2,3)}$. Moreover, the generators of the semigroup $\sigma^\vee \cap M$ satisfy a relation $3\cdot(1,1) = (1,0) + (2,3)$, therefore we have an isomorphism $\mathbb{C}[\sigma^\vee \cap M] \to R$ given by $\chi^{(1,0)}\mapsto x$, $\chi^{(1,1)}\mapsto y$ and $\chi^{(2,3)}\mapsto z$. 
+ Denote this cone by $\sigma^\vee$ and define the corresponding semigroup algebra $\mathbb{C}[\sigma^\vee \cap M] = \bigoplus_{u\in \sigma^\vee\cap M}\mathbb{C}\cdot \chi^u$ with multiplication induced by $\chi^u\cdot \chi^v = \chi^{u+v}$. Since $\sigma^\vee \cap M$ is generated as a semigroup by $(1,0), (1,1), (2,3)$, $\mathbb{C}[\sigma^\vee \cap M]$ is generated as a $\mathbb{C}$-algebra by $\chi^{(1,0)}$, $\chi^{(1,1)}$ and $\chi^{(2,3)}$. Moreover, the generators of the semigroup $\sigma^\vee \cap M$ satisfy a relation $3\cdot(1,1) = (1,0) + (2,3)$, therefore we have an isomorphism $\mathbb{C}[\sigma^\vee \cap M] \to \mathbb{C}[X]$ given by $\chi^{(1,0)}\mapsto x$, $\chi^{(1,1)}\mapsto y$ and $\chi^{(2,3)}\mapsto z$. 
 
-\section{Convex polyhedral cones}
-\jarek{A definicja $N$ oraz $M$?}
-Let $V$ be the vector space $N_\mathbb{R}$, with dual space $V^* = M_\mathbb{R}$. A \textit{convex polyhedral cone} is a set 
+\section{Convex polyhedral cones}\label{sec:convex_polyhedral_cones}
+%\jarek{A definicja $N$ oraz $M$?}
+Let $N,M$ be dual lattices and let $V=N_\mathbb{R}$ and $V^*=M_\mathbb{R}$ be the corresponding dual vector spaces. A \textit{convex polyhedral cone} is a set 
 \[
 \sigma = \{r_1v_1+...+r_sv_s\in V: r_i\geq 0\}
 \]
@@ -293,8 +291,8 @@ A homomorphism of semigroups $S \to S'$ determines a homomorphism \linebreak $R[
 a morphism $U_\tau \to U_\sigma$. For example, the torus $T_N = U_{\{0\}}$ maps to all
 of the affine toric schemes $U_\sigma$ that come from cones $\sigma$ in $N$.
 
-\begin{lem*} If $\tau$ is a face of $\sigma$, then the map $U_\tau \to U_\sigma$ embeds $U_\tau$ as a principal open subset of $U_\sigma$.
-\end{lem*}
+\begin{lem} If $\tau$ is a face of $\sigma$, then the map $U_\tau \to U_\sigma$ embeds $U_\tau$ as a principal open subset of $U_\sigma$.
+\end{lem}
 \begin{proof}
 By Proposition 2 in \S 1.2, there is a $u\in S_\sigma$ with $\tau = \sigma \cap u^\perp$ and
 \[
@@ -365,11 +363,11 @@ u \mapsto \begin{cases}
 Note that this is well defined since $\sigma^\perp$ is a face of $\sigma^\vee$, which implies
 that the sum of two elements in $\sigma^\vee$ cannot be in $\sigma^\perp$ unless both are in $\sigma^\perp$.
 
-\begin{prop*} An affine toric scheme $U_\sigma$ is smooth over $\Spec (R)$ if and only if $\sigma$ is generated by part of a basis for the lattice $N$, in which case
+\begin{prop} An affine toric scheme $U_\sigma$ is smooth over $\Spec (R)$ if and only if $\sigma$ is generated by part of a basis for the lattice $N$, in which case
 \[
 U_\sigma \cong \mathbb{A}^k\times \mathbb{G}_m^{n-k} \text{, } k =\on{dim}(\sigma).
 \]
-\end{prop*}
+\end{prop}
 \begin{proof}
 It is enough to show that if $U_\sigma$ is smooth over $\Spec (R)$ then $\sigma$ is generated by part of a basis for the lattice $N$. Suppose to start that $\sigma$ spans $N_\mathbb{R}$, so $\sigma^\perp = \{0\}$. Assume that $U_\sigma$ is smooth over $R$ and let $\mf{n}$ be a maximal ideal of $R$ with $K=R/\mf{n}$. Take the base change:
 \begin{center}
@@ -378,7 +376,7 @@ U_\sigma \times_R K \arrow[r] \arrow[d, "\pi'"] & U_\sigma \arrow[d, "\pi"]\\
 \Spec K \arrow[r] & \Spec R.
 \end{tikzcd}
 \end{center}
-Note that $U_\sigma \times_R K$ is the affine toric variety associated with the cone $\sigma$ if we work in the category of $K$-schemes. Moreover, since $\pi$ is smooth, so is $\pi'$\jarek{referencja?}. Therefore, we may assume from the start that $U_\sigma$ is a variety over a field $K$, that is we suppose that $R=K$ is a field. Then $\pi$ being smooth implies that $U_\sigma$ is a regular scheme\jarek{referencja?}. Consider the maximal ideal $\mf{m} = (\chi^u:u\in S_\sigma\setminus \{0\})$ of $A_\sigma = K[\sigma^\vee\cap M]$. The square $\mf{m}^2$ is generated by all $\chi^u$ for those $u$ that are sums of two elements of $S_\sigma\setminus \{0\}$. The cotangent space $\mf{m}/\mf{m}^2$ therefore has a basis of images of elements $\chi^u$ for
+Note that $U_\sigma \times_R K$ is the affine toric variety associated with the cone $\sigma$ if we work in the category of $K$-schemes. Moreover, since $\pi$ is smooth, so is $\pi'$ by \cite[Prop.~6.15]{gortz2010algebraic}. Therefore, we may assume from the start that $U_\sigma$ is a variety over a field $K$, that is we suppose that $R=K$ is a field. Then $\pi$ being smooth implies that $U_\sigma$ is a regular scheme by \cite[Lem.~6.26]{gortz2010algebraic}. Consider the maximal ideal $\mf{m} = (\chi^u:u\in S_\sigma\setminus \{0\})$ of $A_\sigma = K[\sigma^\vee\cap M]$. The square $\mf{m}^2$ is generated by all $\chi^u$ for those $u$ that are sums of two elements of $S_\sigma\setminus \{0\}$. The cotangent space $\mf{m}/\mf{m}^2$ therefore has a basis of images of elements $\chi^u$ for
 those $u$ in $S_\sigma \setminus \{0\}$ that are not the sums of two such vectors. For
 example, the first elements in $M$ lying along the edges of $\sigma^\vee$ are vectors of this kind. Since $U_\sigma$ is regular, 
 the cotangent space $\mf{m}/\mf{m}^2$ is $n$-dimensional, since $\dim(U_\sigma) = \dim(T_N) = n$. This implies in particular that $\sigma^\vee$ cannot have more than $n$ edges, and that the
@@ -406,8 +404,8 @@ Indeed, $\on{dim} U_\sigma = \on{dim}U_{\sigma'}+\on{dim}T_{N''}$ by \cite[Prop.
 We therefore call a cone \textit{nonsingular} if it is generated by part of a basis for the lattice, and we call a fan \textit{nonsingular} (fan is defined in \S 1.4) if all of its cones
 are nonsingular, i.e., if the corresponding toric scheme is smooth. Although a toric scheme may be singular, every toric scheme is normal if the base ring is an integrally closed domain:
 
-\begin{prop*} If the base ring $R$ is integrally closed, then each ring $A_\sigma$ is integrally closed.
-\end{prop*}
+\begin{prop} If the base ring $R$ is integrally closed, then each ring $A_\sigma$ is integrally closed.
+\end{prop}
 \begin{proof}
 If $\sigma$ is generated by $v_1,...,v_r$, then $\sigma^\vee = \cap \tau_i^\vee$, where
 $\tau_i$ is the ray generated by $v_i\in \sigma$, so $A_\sigma = \cap A_{\tau_i}$. We have seen that each $A_{\tau_i}$ is isomorphic to $R[X_1,X_2, X_2^{-1}, ..., X_n, X_n^{-1}]$, which is integrally closed (polynomial ring over a normal domain is a normal domain and localization of a normal domain is a normal domain), and the proposition follows from the fact that the intersection of integrally closed domains with common field of fractions is integrally closed.
